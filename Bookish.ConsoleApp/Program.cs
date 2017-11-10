@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 
 namespace Bookish.ConsoleApp
 {
@@ -14,10 +6,8 @@ namespace Bookish.ConsoleApp
     {
         static void Main(string[] args)
         {
-            IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["Bookish"].ConnectionString);
-
-            string SqlString = "SELECT TOP 100 [book_id],[title],[author],[isbn],[available] FROM [books]";
-            var ourBooks = (List<Book>)db.Query<Book>(SqlString);
+            BookFactory bookFactory = new BookFactory();
+            var ourBooks = bookFactory.RetrieveBooksFromDb();
 
             foreach (var books in ourBooks)
             {

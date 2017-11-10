@@ -1,0 +1,19 @@
+﻿
+@model Bookish.Website.Models.LibraryViewModel
+
+<h2>Add a new book</h2>
+
+@using (Html.BeginForm("AddBook", "Library", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Title:</legend>
+        @Html.TextBoxFor(m => m.title, new { @class = "form-control" })
+
+        <legend>Author:</legend>
+        @Html.TextBoxFor(m => m.author, new { @class = "form-control" })
+
+        <legend>ISBN:</legend>
+        @Html.TextBoxFor(m => m.isbn, new { @class = "form-control" })
+        <input class="btn btn-info btn-margin" type="submit" onclick="AddBook()" value="Add Book" />
+    </fieldset>
+}

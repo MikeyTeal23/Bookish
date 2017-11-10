@@ -1,0 +1,66 @@
+﻿@using Bookish.Website.Models
+
+@{
+    ViewBag.Title = "Library";
+}
+
+<head>
+    <style>
+        #book_list {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #book_list td, #book_list th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #book_list tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #book_list tr:hover {
+                background-color: #ddd;
+            }
+
+            #book_list th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+</head>
+
+<div>
+        @Html.Partial("_LibraryAddBook", new LibraryViewModel () )
+</div>
+
+<h2>Library</h2>
+<body>
+    <table id="book_list">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Available</th>
+            <th>Number of copies</th>
+            <th>Number of available copies</th>
+        </tr>
+
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Key.title.ToString()</td>
+                <td>@book.Key.author.ToString()</td>
+                <td>@book.Key.isbn.ToString()</td>
+                <td>@book.Key.available.ToString()</td>
+                <td>@book.Value.NoOfBooks</td>
+                <td>@book.Value.NoOfAvailableBooks</td>
+            </tr>
+        }
+    </table>
+</body>
